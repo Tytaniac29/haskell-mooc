@@ -26,11 +26,12 @@ data Velocity = Velocity Double
 
 -- velocity computes a velocity given a distance and a time
 velocity :: Distance -> Time -> Velocity
-velocity = todo
+velocity (Distance d) (Time t) = Velocity (d/t) 
 
 -- travel computes a distance given a velocity and a time
 travel :: Velocity -> Time -> Distance
-travel = todo
+travel (Velocity v) (Time t) = Distance (v*t)
+
 
 ------------------------------------------------------------------------------
 -- Ex 2: let's implement a simple Set datatype. A Set is a list of
@@ -134,6 +135,15 @@ reverseNonEmpty = todo
 --
 -- velocity (Distance 50 <> Distance 10) (Time 1 <> Time 2)
 --    ==> Velocity 20
+
+instance Semigroup Distance where
+  (Distance d1) <> (Distance d2) = Distance (d1+d2)
+
+instance Semigroup Time where
+  (Time t1) <> (Time t2) = Time (t1+t2)
+
+instance Semigroup Velocity where
+  (Velocity v1) <> (Velocity v2) = Velocity (v1+v2)
 
 
 ------------------------------------------------------------------------------
